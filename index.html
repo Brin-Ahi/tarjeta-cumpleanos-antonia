@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz Cumpleaños Antonia</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            height: 100%;
+            background-color: #F9F3EE;
+            overflow: hidden;
+        }
+        .container {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #F9F3EE;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+            pointer-events: none;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .slide.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        .card {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            max-width: 500px;
+            width: 90%;
+            padding: 40px 30px;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+        h1 {
+            color: #FF80AB;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+        .subtitle {
+            color: #FF80AB;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            letter-spacing: 1px;
+        }
+        .date {
+            color: #888;
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            letter-spacing: 1px;
+        }
+        p {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 1.8rem;
+            font-size: 1.2rem;
+        }
+        .highlight {
+            color: #FF80AB;
+            font-weight: 600;
+        }
+        .button {
+            background-color: #FF80AB;
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 12px rgba(255, 128, 171, 0.3);
+            margin-top: 20px;
+        }
+        .button:hover {
+            background-color: #F50057;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 18px rgba(255, 128, 171, 0.4);
+        }
+        .button:active {
+            transform: translateY(-1px);
+        }
+        .decoration {
+            position: absolute;
+            pointer-events: none;
+        }
+        .hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            opacity: 0;
+            background-color: #FF80AB;
+            clip-path: path('M10,4 C10,4 8.5,0 5,0 C2.5,0 0,1.5 0,5 C0,8.5 5,12 10,16 C15,12 20,8.5 20,5 C20,1.5 17.5,0 15,0 C11.5,0 10,4 10,4 Z');
+            animation: float 5s ease-in infinite;
+        }
+        @keyframes float {
+            0% {
+                opacity: 0;
+                transform: translateY(0) scale(0.8) rotate(0deg);
+            }
+            20% {
+                opacity: 0.8;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-150px) scale(1.2) rotate(360deg);
+            }
+        }
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            opacity: 0;
+            animation: fall 4s ease-out infinite;
+        }
+        @keyframes fall {
+            0% {
+                opacity: 1;
+                top: -10%;
+                transform: translateX(0) rotate(0deg);
+            }
+            100% {
+                opacity: 0;
+                top: 100%;
+                transform: translateX(100px) rotate(360deg);
+            }
+        }
+        .logo {
+            width: 200px;
+            height: auto;
+            margin: 20px 0;
+        }
+        .gift-icon {
+            font-size: 4rem;
+            color: #FF80AB;
+            margin: 20px 0;
+        }
+        .ribbon {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            width: 120px;
+            height: 120px;
+            overflow: hidden;
+        }
+        .ribbon-text {
+            position: absolute;
+            display: block;
+            width: 180px;
+            padding: 8px 0;
+            background-color: #FF80AB;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+            color: #fff;
+            font-size: 0.8rem;
+            text-shadow: 0 1px 1px rgba(0,0,0,0.2);
+            text-align: center;
+            left: -15px;
+            top: 25px;
+            transform: rotate(45deg);
+        }
+    </style>
+</head>
+<body>
+    <!-- Slide 1: Initial Greeting -->
+    <div id="slide1" class="slide active">
+        <div class="card">
+            <div class="ribbon"><span class="ribbon-text">11 de Marzo 2025</span></div>
+            <h1>¡Feliz Cumpleaños!</h1>
+            <div class="subtitle">Querida Antonia</div>
+            <div class="date">11 • Marzo • 2025</div>
+            <p>Hoy es un día muy especial para celebrar a alguien <span class="highlight">increíble</span> que siempre tiene una sonrisa para regalar...</p>
+            <button class="button" onclick="nextSlide(1, 2)">Continuar</button>
+        </div>
+    </div>
+
+    <!-- Slide 2: Support Message -->
+    <div id="slide2" class="slide">
+        <div class="card">
+            <h1>Gracias por Todo</h1>
+            <div class="hearts" id="hearts-container"></div>
+            <p>Para alguien que <span class="highlight">siempre está allí</span> para apoyarme cuando más lo necesito. Tu manera de escuchar y entender es única.</p>
+            <p>Eres como una hermana para mí, y estoy muy agradecido/a de tenerte en mi vida.</p>
+            <button class="button" onclick="nextSlide(2, 3)">Seguir</button>
+        </div>
+    </div>
+
+    <!-- Slide 3: Best Person -->
+    <div id="slide3" class="slide">
+        <div class="card">
+            <h1>Eres La Mejor</h1>
+            <p>Porque te has convertido en una parte esencial de mi vida.</p>
+            <p>Porque <span class="highlight">eres la mejor</span> y te mereces algo especial en tu día...</p>
+            <div class="gift-icon">🎁</div>
+            <button class="button" onclick="nextSlide(3, 4)">Descubrir Regalo</button>
+        </div>
+    </div>
+
+    <!-- Slide 4: Gift Reveal -->
+    <div id="slide4" class="slide">
+        <div class="card">
+            <h1>¡Sorpresa!</h1>
+            <p>Con mucho cariño, te regalo:</p>
+            <p class="highlight" style="font-size: 1.5rem; font-weight: bold;">2 meses de Crunchyroll Premium</p>
+            <div>
+                <svg class="logo" width="200" height="45" viewBox="0 0 190 40">
+                    <path d="M36.9,10.6c0-5.8-4.7-10.5-10.5-10.5H10.6C4.7,0,0,4.7,0,10.6v15.8C0,32.3,4.7,37,10.6,37h15.8c5.8,0,10.5-4.7,10.5-10.6 V10.6z" fill="#F47521"/>
+                    <path d="M24.4,4.3c-0.3,0-0.5,0.2-0.5,0.5v4c0,0.3,0.2,0.5,0.5,0.5h4c0.3,0,0.5-0.2,0.5-0.5V4.8c0-0.3-0.2-0.5-0.5-0.5H24.4z" fill="#FFFFFF"/>
+                    <path d="M65.8,16c0-4.9-3.7-8.9-8.6-8.9h-8.7v16.8h5.1v-5.4h1.7l3.2,5.5h5.7l-3.8-6.1C63.6,21.2,65.8,18.9,65.8,16z M60.7,16 c0,2-1.6,3.2-3.6,3.2h-3.5V13h3.5C59.1,13,60.7,14.1,60.7,16z" fill="#FFFFFF"/>
+                    <path d="M80.7,16.7v-1.1c0-4.9-3.7-8.7-8.6-8.7c-4.9,0-8.6,3.8-8.6,8.7v8.3h5.1v-8.3c0-2.1,1.6-3.8,3.6-3.8s3.6,1.7,3.6,3.8v1.1 c0,1.9-1.6,3.8-3.6,3.8h-1.1v4.4h1.1C76.9,25,80.7,21.4,80.7,16.7z" fill="#FFFFFF"/>
+                    <path d="M88.3,23.6c-4.9,0-8.6-3.8-8.6-8.5v-8h5.1v8c0,2,1.6,3.6,3.6,3.6s3.6-1.6,3.6-3.6v-8h5.1v8 C96.8,19.9,93.1,23.6,88.3,23.6z" fill="#FFFFFF"/>
+                    <path d="M113.1,14.2V7.1h-5.1v16.8h5.1v-5.1h7.6v5.1h5.1V7.1h-5.1v7.1H113.1z" fill="#FFFFFF"/>
+                    <path d="M135.2,7.1h-5.1v16.8h5.1V7.1z" fill="#FFFFFF"/>
+                    <path d="M144.8,7.1h-5.1v16.8h13.5v-5h-8.4V7.1z" fill="#FFFFFF"/>
+                    <path d="M165.7,7.1h-5.1v16.8h13.5v-5h-8.4V7.1z" fill="#FFFFFF"/>
+                    <path d="M189.9,7.1h-13.5v16.8h13.5v-5h-8.4v-1.8h8.4v-4.4h-8.4V12h8.4V7.1z" fill="#FFFFFF"/>
+                </svg>
+            </div>
+            <p>Para que disfrutes todos tus animes favoritos.</p>
+            <p>¡Te quiero mucho! ❤️</p>
+            <div id="confetti-container"></div>
+        </div>
+    </div>
+
+    <script>
+        // Function to navigate between slides
+        function nextSlide(current, next) {
+            document.getElementById('slide' + current).classList.remove('active');
+            document.getElementById('slide' + next).classList.add('active');
+            
+            if (next === 2) {
+                createHearts();
+            }
+            
+            if (next === 4) {
+                createConfetti();
+            }
+        }
+        
+        // Create floating hearts animation
+        function createHearts() {
+            const heartsContainer = document.getElementById('hearts-container');
+            for (let i = 0; i < 15; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.bottom = Math.random() * 20 + '%';
+                heart.style.animationDelay = Math.random() * 5 + 's';
+                heart.style.opacity = Math.random() * 0.5 + 0.3;
+                heart.style.transform = `scale(${Math.random() * 0.6 + 0.7})`;
+                heartsContainer.appendChild(heart);
+            }
+        }
+
+        // Create confetti animation
+        function createConfetti() {
+            const colors = ['#FF80AB', '#F50057', '#EC407A', '#C2185B', '#AD1457', '#FFCDD2'];
+            const container = document.getElementById('confetti-container');
+            
+            for (let i = 0; i < 80; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.width = Math.random() * 10 + 5 + 'px';
+                confetti.style.height = Math.random() * 10 + 5 + 'px';
+                confetti.style.animationDuration = Math.random() * 3 + 2 + 's';
+                confetti.style.animationDelay = Math.random() * 3 + 's';
+                container.appendChild(confetti);
+            }
+        }
+    </script>
+</body>
+</html>
